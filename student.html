@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | Student ERP</title>
+    <link rel="stylesheet" href="student.css">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<section id="loginScreen" class="login-screen">
+    <div class="login-card">
+        <div class="logo">🎓</div>
+        <h1>CampusConnect</h1>
+        <p class="muted">Student ERP Portal</p>
+        <h2>Student Login</h2>
+
+        <form id="loginForm">
+            <label for="studentName">Student Name</label>
+            <input id="studentName" placeholder="Enter your name" required>
+
+            <label for="domainId">Register / Domain ID</label>
+            <input id="domainId" placeholder="STU2026001" required>
+
+            <div class="two-fields">
+                <div>
+                    <label for="department">Department</label>
+                    <select id="department" required>
+                        <option value="">Select</option>
+                        <option>CSE</option>
+                        <option>IT</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>AI & DS</option>
+                        <option>BCA</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="year">Year</label>
+                    <select id="year" required>
+                        <option value="">Select</option>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="email">College Email</label>
+            <input type="email" id="email" placeholder="student@college.edu" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+
+            <p id="loginError" class="error"></p>
+            <button type="submit" class="primary-btn">Login to ERP →</button>
+        </form>
+
+        <div class="demo-info">
+            <strong>Demo Login</strong><br>
+            Domain ID: STU2026001<br>
+            Password: 1234
+        </div>
+        <p class="muted small">Demo project only — not a real college login.</p>
+    </div>
+</section>
+
+<!-- ERP DASHBOARD -->
+<div id="dashboardPage" class="hidden">
+    <aside class="sidebar">
+        <div class="brand">🎓 CampusConnect</div>
+        <p class="sidebar-label">STUDENT PORTAL</p>
+        <button class="nav-btn active" data-page="overview">🏠 Overview</button>
+        <button class="nav-btn" data-page="attendance">📅 Attendance</button>
+        <button class="nav-btn" data-page="marks">📝 Marks & Grades</button>
+        <button class="nav-btn" data-page="fees">💳 Fees</button>
+        <button class="nav-btn" data-page="timetable">🗓️ Timetable</button>
+        <button class="nav-btn" data-page="profile">👤 My Profile</button>
+        <button id="logoutBtn" class="logout-btn">↩ Logout</button>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="muted">STUDENT ERP PORTAL</p>
+                <h1 id="pageTitle">Dashboard Overview</h1>
+            </div>
+            <div class="student-chip">
+                <div class="avatar">🎓</div>
+                <div><strong id="headerName">Student</strong><small id="headerId">STU2026001</small></div>
+            </div>
+        </header>
+
+        <!-- OVERVIEW -->
+        <section class="page-section" id="page-overview">
+            <div class="welcome-banner">
+                <div>
+                    <p>WELCOME BACK 👋</p>
+                    <h2 id="welcomeName">Hello, Student!</h2>
+                    <span>Your academic journey at a glance.</span>
+                </div>
+                <div class="banner-icon">🎓</div>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card lavender">
+                    <span>📅 Attendance</span>
+                    <strong id="attendanceStat">85%</strong>
+                    <small>Overall attendance</small>
+                </article>
+                <article class="stat-card pink">
+                    <span>📝 Average Marks</span>
+                    <strong id="marksStat">82%</strong>
+                    <small>Across demo subjects</small>
+                </article>
+                <article class="stat-card blue">
+                    <span>📚 Subjects</span>
+                    <strong id="subjectsStat">5</strong>
+                    <small>Current semester</small>
+                </article>
+                <article class="stat-card mint">
+                    <span>💳 Fee Status</span>
+                    <strong id="feeStat">Paid</strong>
+                    <small>Demo fee record</small>
+                </article>
+            </div>
+
+            <div class="content-grid">
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div><h3>Attendance Summary</h3><p>Subject-wise attendance</p></div>
+                        <button class="text-btn" data-goto="attendance">View all →</button>
+                    </div>
+                    <div id="overviewAttendance"></div>
+                </article>
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div><h3>Recent Marks</h3><p>Internal assessment</p></div>
+                        <button class="text-btn" data-goto="marks">View all →</button>
+                    </div>
+                    <div id="overviewMarks"></div>
+                </article>
+            </div>
+
+            <article class="panel notice-panel">
+                <h3>📢 Announcements</h3>
+                <div class="notice">
+                    <strong>Internal Assessment</strong>
+                    <p>Check your subject-wise marks in the Marks & Grades section.</p>
+                </div>
+                <div class="notice">
+                    <strong>Attendance Reminder</strong>
+                    <p>Maintain the attendance requirement set by your college.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ATTENDANCE -->
+        <section class="page-section hidden" id="page-attendance">
+            <article class="panel">
+                <h3>📅 Attendance Details</h3>
+                <p class="muted">Demo attendance records for the current semester.</p>
+                <div id="attendanceDetails"></div>
+            </article>
+        </section>
+
+        <!-- MARKS -->
+        <section class="page-section hidden" id="page-marks">
+            <article class="panel">
+                <h3>📝 Marks & Grades</h3>
+                <p class="muted">Sample internal assessment marks.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Subject</th><th>Internal 1</th><th>Internal 2</th><th>Average</th><th>Grade</th></tr></thead>
+                        <tbody id="marksTable"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <!-- FEES -->
+        <section class="page-section hidden" id="page-fees">
+            <article class="panel">
+                <h3>💳 Fee Details</h3>
+                <p class="muted">Illustrative fee information — not connected to a college account.</p>
+                <div class="fee-card">
+                    <div><span>Semester Fee</span><strong>₹ 25,000</strong></div>
+                    <div><span>Paid Amount</span><strong class="green-text">₹ 25,000</strong></div>
+                    <div><span>Balance</span><strong>₹ 0</strong></div>
+                    <div><span>Status</span><strong class="green-text">Paid ✓</strong></div>
+                </div>
+            </article>
+        </section>
+
+        <!-- TIMETABLE -->
+        <section class="page-section hidden" id="page-timetable">
+            <article class="panel">
+                <h3>🗓️ Weekly Timetable</h3>
+                <p class="muted">Sample timetable. Replace it with your college schedule.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Day</th><th>9:00 AM</th><th>10:00 AM</th><th>11:15 AM</th><th>1:00 PM</th></tr></thead>
+                        <tbody>
+                            <tr><td>Monday</td><td>Java</td><td>Maths</td><td>DBMS</td><td>Lab</td></tr>
+                            <tr><td>Tuesday</td><td>OS</td><td>Java</td><td>English</td><td>DBMS</td></tr>
+                            <tr><td>Wednesday</td><td>Maths</td><td>Lab</td><td>Java</td><td>OS</td></tr>
+                            <tr><td>Thursday</td><td>DBMS</td><td>English</td><td>Maths</td><td>Lab</td></tr>
+                            <tr><td>Friday</td><td>Java</td><td>OS</td><td>DBMS</td><td>Maths</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="page-section hidden" id="page-profile">
+            <article class="panel">
+                <h3>👤 My Student Profile</h3>
+                <div id="profileDetails" class="profile-grid"></div>
+            </article>
+        </section>
+
+        <footer>CampusConnect Student ERP • Demo academic data</footer>
+    </main>
+</div>
+
+<script src="student.js"></script>
+</body>
+</html>
